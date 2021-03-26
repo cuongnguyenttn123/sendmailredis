@@ -29,7 +29,8 @@ public class Controller {
   public String sendEmail(
       @RequestParam String email, @RequestParam String subject, @RequestParam String content) {
     log.info("Sending email");
-    rqueueMessageSender.enqueue(emailQueueName, new Email(email, subject, content));
+    //rqueueMessageSender.enqueue(emailQueueName, new Email(email, subject, content));
+    rqueueMessageSender.enqueueIn(emailQueueName, new Email(email, subject, content), invoiceDelay);
     return "Please check your inbox!";
   }
 
