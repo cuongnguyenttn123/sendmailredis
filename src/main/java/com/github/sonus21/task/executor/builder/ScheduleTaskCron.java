@@ -12,11 +12,11 @@ import java.util.Date;
 
 @Component
 public class ScheduleTaskCron {
-    @Value("${cron.time}")
-    private String cron;
+
     private static final Logger log = (Logger) LoggerFactory.getLogger(ScheduleTaskCron.class);
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-    @Scheduled(cron = "30 */1 * * * *")
+
+    @Scheduled(cron = "${cron.time}")
     public void reportCurrentTime() {
         log.info("The time is now {}", dateFormat.format(new Date()));
     }
